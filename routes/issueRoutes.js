@@ -22,8 +22,8 @@ module.exports = (app) => {
     })
 
     app.delete('/issue/:issueId', (req, res) => {
-        var loggedUser = req.session.user;
-        if (!loggedUser && !loggedUser.isAdmin) res.status(403).send('Not permitted to delete issue');
+        // var loggedUser = req.session.user;
+        // if (!loggedUser && !loggedUser.isAdmin) res.status(403).send('Not permitted to delete issue');
 
         var issueId = req.params.issueId;
         issueService.remove(issueId)
@@ -37,8 +37,8 @@ module.exports = (app) => {
     })
 
     app.put('/issue/:issueId', (req, res) => {
-        var loggedUser = req.session.user;
-        if (!loggedUser && !loggedUser.isAdmin) res.status(403).send('Not permitted to update issue');
+        // var loggedUser = req.session.user;
+        // if (!loggedUser && !loggedUser.isAdmin) res.status(403).send('Not permitted to update issue');
 
         var issue = req.body;
         issueService.update(issue)

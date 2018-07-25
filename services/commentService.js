@@ -1,8 +1,8 @@
 'use strict';
-
+const mongoService = require('./mongoService')
 
 function query() {
-    return connectToMongo()
+    return mongoService.connectToMongo()
         .then(db => {
             const collection = db.collection('comment');
             return collection.find({}).toArray()
@@ -11,7 +11,7 @@ function query() {
 
 
 function add(comment) {
-    return connectToMongo()
+    return mongoService.connectToMongo()
         .then(db => {
             const collection = db.collection('comment');
             return collection.insertOne(comment)
