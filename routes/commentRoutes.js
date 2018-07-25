@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const userService = require('../services/userService')
 
 function addUserRoutes(app) {
@@ -39,3 +40,24 @@ function addUserRoutes(app) {
 }
 
 module.exports = addUserRoutes;
+=======
+const commentService = require('../services/commentService.js')
+
+
+module.exports = (app) => {
+
+    // LIST
+    app.get('/comment', (req, res) => {
+        commentService.query()
+            .then(comments => res.json(comments))
+    })
+    // CREATE
+    app.post('/comment', (req, res) => {
+        const comment = req.body;
+        commentService.add(comment)
+            .then(comment => {
+                res.json(comment)
+            })
+    })
+}
+>>>>>>> a47539602454df60398a5c969dfd9c8b66ea2fd9
