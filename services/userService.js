@@ -1,8 +1,9 @@
 'use strict'
+const mongoService = require('./mongoService')
 const ObjectId = require('mongodb').ObjectId;
 
 function query() {
-    return connectToMongo()
+    return mongoService.connectToMongo()
         .then(db => {
             const collection = db.collection('user');
             return collection.find({}).toArray()
@@ -11,7 +12,7 @@ function query() {
 
 function remove(userId) {
     userId = new ObjectId(userId)
-    return connectToMongo()
+    return mongoService.connectToMongo()
         .then(db => {
             const collection = db.collection('user');
             return collection.remove({
@@ -22,7 +23,7 @@ function remove(userId) {
 
 function getById(userId) {
     userId = new ObjectId(userId)
-    return connectToMongo()
+    return mongoService.connectToMongo()
         .then(db => {
             const collection = db.collection('user');
             return collection.findOne({
@@ -32,7 +33,7 @@ function getById(userId) {
 }
 
 function add(user) {
-    return connectToMongo()
+    return mongoService.connectToMongo()
         .then(db => {
             const collection = db.collection('user');
             return collection.insertOne(user)
@@ -46,7 +47,7 @@ function add(user) {
 
 function update(user) {
     user._id = new ObjectId(user._id)
-    return connectToMongo()
+    return mongoService.connectToMongo()
 
         .then(db => {
             const collection = db.collection('user');

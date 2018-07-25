@@ -6,13 +6,13 @@ function addUserRoutes(app) {
             .then(users => res.json(users))
     });
 
-    app.get('/user/userId', (req, res) => {
+    app.get('/user/:userId', (req, res) => {
         var userId = req.params.userId;
         userService.getById(userId)
             .then(user => res.json(user))
     })
 
-    app.delete('/user/userId', (req, res)=>{
+    app.delete('/user/:userId', (req, res)=>{
         var userId = req.params.userId;
         userService.remove(userId)
             .then(()=>res.end(`user ${userId} Deleted `))
@@ -24,7 +24,7 @@ function addUserRoutes(app) {
             .then(user => res.json(user))
     })
 
-    app.put('/user/userId', (req, res)=>{
+    app.put('/user/:userId', (req, res)=>{
         const user = req.body;
         userService.update(user)
             .then(user=>res.json(user))
