@@ -23,5 +23,5 @@ function connectToMongo() {
 }
 
 module.exports = {
-    connect: connectToMongo
+    connectToMongo
 }
