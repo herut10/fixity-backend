@@ -6,10 +6,8 @@ function connectToMongo() {
     if (dbConn) return Promise.resolve(dbConn);
     const MongoClient = require('mongodb').MongoClient;
 
-    const url = !process.env.PORT
-    ? 'mongodb://localhost:27017/fixity_db'
-    : 'mongodb://fixity-team:qwerty1234@ds247101.mlab.com:47101/fixity_db'
-
+    const url = 'mongodb://fixity-team:qwerty1234@ds247101.mlab.com:47101/fixity_db'
+    
     return MongoClient.connect(url)
         .then(client => {
             console.log('Connected to MongoDB');
