@@ -1,5 +1,5 @@
-'use strict'
-//test
+'use strict';
+
 const ObjectId = require('mongodb').ObjectId;
 
 function query() {
