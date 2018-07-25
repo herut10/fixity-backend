@@ -1,16 +1,4 @@
 'use strict'
-<<<<<<< HEAD
-const express = require('express')
-var cors = require('cors')
-const addUserRoutes = require('./routes/userRoutes')
-
-var bodyParser = require('body-parser')
-
-
-const app = express()
-app.use(bodyParser.json())
-app.use(cors())
-=======
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -28,10 +16,6 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.static('dist'))
-<<<<<<< HEAD
-addUserRoutes(app)
-
-=======
 app.use(cookieParser());
 app.use(session({
     secret: 'fixity secret',
@@ -39,8 +23,6 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
 }));
->>>>>>> eabf1b5ad8794cc8b1b5a04e38b55f3ca0892109
->>>>>>> a47539602454df60398a5c969dfd9c8b66ea2fd9
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
