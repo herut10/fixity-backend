@@ -7,7 +7,7 @@ function connectToMongo() {
     const MongoClient = require('mongodb').MongoClient;
 
     const url = 'mongodb://fixity-team:qwerty1234@ds247101.mlab.com:47101/fixity_db'
-    
+
     return MongoClient.connect(url)
         .then(client => {
             console.log('Connected to MongoDB');
