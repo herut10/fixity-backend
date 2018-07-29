@@ -3,9 +3,9 @@ const mongoService = require('./mongoService')
 const ObjectId = require('mongodb').ObjectId;
 
 
-function query(issue) {
-    const criteria = { issueId: issue };
-    
+function query(getBy) {
+    const criteria=JSON.parse(getBy);
+    if(criteria.commenterId) criteria.commenterId = new ObjectId(criteria.commenterId);
     return mongoService.connectToMongo()
         .then(db => {
             return db.collection('comment')
@@ -28,24 +28,6 @@ function query(issue) {
                     }
                 ]).toArray()
         })
-
-
-
-    // var type = params.type;
-    // var id = params.id;  
-    // if(type === 'issue') {
-    //     return mongoService.connectToMongo()
-    //     .then(db => {
-    //         const collection = db.collection('comment');
-    //         return collection.find({issueId: id}).toArray()
-    //     });
-    // } else {
-    //     return mongoService.connectToMongo()
-    //     .then(db => {
-    //         const collection = db.collection('comment');
-    //         return collection.find({commenterId: id}).toArray()
-    //     });
-    // }      
 }
 
 

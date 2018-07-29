@@ -2,12 +2,14 @@
 const mongoService = require('./mongoService')
 const ObjectId = require('mongodb').ObjectId;
 
-function query() {
+function query(getBy) {
+    var getBy=JSON.parse(getBy)
     return mongoService.connectToMongo()
         .then(db => {
             const collection = db.collection('issue');
-            return collection.find({}).toArray()
+            return collection.find(getBy).toArray()
         })
+        
 }
 
 function remove(issueId) {

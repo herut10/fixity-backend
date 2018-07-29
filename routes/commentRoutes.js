@@ -4,9 +4,9 @@ const commentService = require('../services/commentService.js')
 module.exports = (app) => {
 
     // LIST
-    app.get('/comment/:issueId', (req, res) => {
-        var issueId = req.params.issueId;
-        commentService.query(issueId)
+    app.get('/comment', (req, res) => {
+        var getBy = req.query.getBy;
+        commentService.query(getBy)
         .then(comments => res.json(comments))
         .catch(err => console.warn(err)) 
     })
