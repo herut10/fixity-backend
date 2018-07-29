@@ -9,7 +9,6 @@ function query(getBy) {
             const collection = db.collection('issue');
             return collection.find(getBy).toArray()
         })
-        
 }
 
 function remove(issueId) {
@@ -20,6 +19,7 @@ function remove(issueId) {
             return collection.remove({ _id: issueId })
         })
 }
+
 function getById(issueId) {
     issueId = new ObjectId(issueId)
     return mongoService.connectToMongo()
