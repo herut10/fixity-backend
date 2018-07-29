@@ -40,8 +40,8 @@ module.exports = (app) => {
         // var loggedUser = req.session.user;
         // if (!loggedUser && !loggedUser.isAdmin) res.status(403).send('Not permitted to update issue');
 
-        var issue = req.body;
-        issueService.update(issue)
+        var updatedIssue = req.body;
+        issueService.update(updatedIssue)
             .then(result => res.json(result));
     })
 }
