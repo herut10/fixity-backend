@@ -1,0 +1,46 @@
+'use strict';
+
+const issueService = require('../services/issueService');
+
+module.exports = (socket, io) => {
+
+
+    socket.on('issueAdd', issue => {
+        issueService.add(issue)
+            .then(AddedIssue => {
+                
+                io.emit('issueAdded', AddedIssue);
+            })
+            .catch(err => {
+                socket.emit('errorAdding');
+            });
+    })
+
+
+    // app.delete('/issue/:issueId', (req, res) => {
+    //     // var loggedUser = req.session.user;
+    //     // if (!loggedUser && !loggedUser.isAdmin) res.status(403).send('Not permitted to delete issue');
+
+    //     var issueId = req.params.issueId;
+    //     issueService.remove(issueId)
+    //         .then(() => res.end('Deleted issue'))
+    //         .catch(err => console.warn(err));
+    // })
+
+    // app.post('/issue', (req, res) => {
+    //     var issue = req.body;
+    //     issueService.add(issue)
+    //         .then(issue => res.json(issue))
+    //         .catch(err => console.warn(err));
+    // })
+
+    // app.put('/issue/:issueId', (req, res) => {
+    //     // var loggedUser = req.session.user;
+    //     // if (!loggedUser && !loggedUser.isAdmin) res.status(403).send('Not permitted to update issue');
+
+    //     var updatedIssue = req.body;
+    //     issueService.update(updatedIssue)
+    //         .then(result => res.json(result))
+    //         .catch(err => console.warn(err));
+    // })
+}

@@ -11,6 +11,13 @@ const userRoutes = require('./routes/userRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 
 
+const issueSockets = require('./sockets/issueSockets')
+
+
+
+
+
+
 app.use(bodyParser.json());
 app.use(cors({
     origin: ['http://localhost:8080'],
@@ -27,7 +34,6 @@ app.use(session({
     }
 }));
 
-
 issueRoutes(app);
 userRoutes(app);
 commentRoutes(app);
@@ -39,6 +45,10 @@ var http = require('http').Server(app);
 // var server = require('http').createServer(app);
 var io = require('socket.io')(http);
 io.on('connection', function (socket) {
+
+    issueSockets(socket,io)
+
+
     console.log('new connection');
     socket.on('emit_method', function (val) {
         console.log(val);
