@@ -6,6 +6,8 @@ const ObjectId = require('mongodb').ObjectId;
 function query(getBy) {
     const criteria=JSON.parse(getBy);
     if(criteria.commenterId) criteria.commenterId = new ObjectId(criteria.commenterId);
+    console.log(criteria);
+    
     return mongoService.connectToMongo()
         .then(db => {
             return db.collection('comment')
@@ -25,7 +27,7 @@ function query(getBy) {
                     {$unwind: {
                         path :'$commenter', 
                         preserveNullAndEmptyArrays: true}
-                    }
+                    },
                 ]).toArray()
         })
 }
