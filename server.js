@@ -12,6 +12,7 @@ const commentRoutes = require('./routes/commentRoutes');
 
 
 const issueSockets = require('./sockets/issueSockets')
+const userSockets = require('./sockets/userSockets')
 
 
 
@@ -46,7 +47,8 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 io.on('connection', function (socket) {
 
-    issueSockets(socket,io)
+    issueSockets(socket, io)
+    userSockets(socket, io)
 
 
     console.log('new connection');

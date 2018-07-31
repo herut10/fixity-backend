@@ -21,13 +21,13 @@ function remove(userId) {
         })
 }
 
-function getById(userId) {
-    userId = new ObjectId(userId)
+function checkLogin(username, password) {
     return mongoService.connectToMongo()
         .then(db => {
             const collection = db.collection('user');
             return collection.findOne({
-                _id: userId
+                username,
+                password
             })
         })
 }
@@ -65,7 +65,7 @@ function update(user) {
 module.exports = {
     query,
     remove,
-    getById,
+    checkLogin,
     add,
     update
 }
