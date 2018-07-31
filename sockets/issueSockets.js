@@ -3,8 +3,6 @@
 const issueService = require('../services/issueService');
 
 module.exports = (socket, io) => {
-
-
     socket.on('issueAdd', issue => {
         issueService.add(issue)
             .then(AddedIssue => {
@@ -14,6 +12,10 @@ module.exports = (socket, io) => {
             .catch(err => {
                 socket.emit('errorAdding');
             });
+    })
+
+    socket.on('issueLikesChanged', updatedIssue => {
+        io.emit('issueLikesChanged', updatedIssue);
     })
 
 

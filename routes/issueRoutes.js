@@ -9,7 +9,7 @@ module.exports = (app) => {
             .then(issues => res.json(issues))
             .catch(err => console.warn(err));
     })
-   
+
     app.get('/issue/:issueId', (req, res) => {
         var issueId = req.params.issueId;
         issueService.getById(issueId)
@@ -29,8 +29,13 @@ module.exports = (app) => {
 
     app.post('/issue', (req, res) => {
         var issue = req.body;
+
         issueService.add(issue)
-            .then(issue => res.json(issue))
+            .then(issue => {
+                console.log(issue);
+
+                res.json(issue)
+            })
             .catch(err => console.warn(err));
     })
 

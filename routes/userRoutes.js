@@ -22,6 +22,7 @@ function addUserRoutes(app) {
     })
 
     app.post('/user', (req, res) => {
+        console.log('now in routes!');
         const user = req.body;
         userService.add(user)
             .then(user => res.json(user))
