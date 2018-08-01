@@ -13,6 +13,7 @@ const commentRoutes = require('./routes/commentRoutes');
 
 const issueSockets = require('./sockets/issueSockets')
 const userSockets = require('./sockets/userSockets')
+const commentSockets = require('./sockets/commentSockets')
 
 
 
@@ -49,6 +50,7 @@ io.on('connection', function (socket) {
 
     issueSockets(socket, io)
     userSockets(socket, io)
+    commentSockets(socket, io)
 
 
     console.log('new connection');
