@@ -18,9 +18,6 @@ module.exports = (app) => {
     })
 
     app.delete('/issue/:issueId', (req, res) => {
-        // var loggedUser = req.session.user;
-        // if (!loggedUser && !loggedUser.isAdmin) res.status(403).send('Not permitted to delete issue');
-
         var issueId = req.params.issueId;
         issueService.remove(issueId)
             .then(() => res.end('Deleted issue'))
@@ -31,11 +28,7 @@ module.exports = (app) => {
         var issue = req.body;
 
         issueService.add(issue)
-            .then(issue => {
-                console.log(issue);
-
-                res.json(issue)
-            })
+            .then(issue => res.json(issue))
             .catch(err => console.warn(err));
     })
 

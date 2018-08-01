@@ -16,5 +16,12 @@ module.exports = (app) => {
         commentService.add(comment)
             .then(comment => res.json(comment))
             .catch(err=> console.warn(err))
-    });        
+    });
+    
+    app.delete('/comment', (req, res) => {
+        var deleteBy = req.query.deleteBy;
+        commentService.remove(deleteBy)
+            .then(() => res.end('Deleted comments'))
+            .catch(err => console.warn(err));
+    })
 }

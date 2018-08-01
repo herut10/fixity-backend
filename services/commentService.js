@@ -46,8 +46,19 @@ function add(comment) {
         })
 }
 
+function remove(deleteBy) {
+    var deleteBy=JSON.parse(deleteBy)
+    if(deleteBy._id) deleteBy._id = new ObjectId(deleteBy._id);
+    return mongoService.connectToMongo()
+        .then(db => {
+            const collection = db.collection('comment');
+            return collection.deleteMany(deleteBy)
+        });
+}
+
 
 module.exports = {
     query,
-    add
+    add,
+    remove,
 }
