@@ -15,6 +15,9 @@ module.exports = (socket, io) => {
     })
 
     socket.on('issueLikesChanged', updatedIssue => {
+        socket.handshake.session.wow = 'qwe';
+        console.log('wow');
+        console.log(socket.handshake.session);
         io.emit('issueLikesChanged', updatedIssue);
     })
 

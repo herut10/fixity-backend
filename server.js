@@ -9,6 +9,7 @@ const session = require('express-session');
 const issueRoutes = require('./routes/issueRoutes');
 const userRoutes = require('./routes/userRoutes');
 const commentRoutes = require('./routes/commentRoutes');
+const sharedsession = require("express-socket.io-session");
 
 
 const issueSockets = require('./sockets/issueSockets')
@@ -26,18 +27,11 @@ app.use(cors({
 }));
 app.use(express.static('dist'))
 app.use(cookieParser());
-app.use(session({
-    secret: 'fixity secret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        secure: false
-    }
-}));
 
-issueRoutes(app);
-userRoutes(app);
-commentRoutes(app);
+
+
+
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -45,8 +39,27 @@ const PORT = process.env.PORT || 3000;
 var http = require('http').Server(app);
 // var server = require('http').createServer(app);
 var io = require('socket.io')(http);
-io.on('connection', function (socket) {
+// Attach session
+var serverSession = session({
+    secret: 'fixity secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: false
+    }
+})
 
+app.use(serverSession);
+io.use(sharedsession(serverSession));
+
+issueRoutes(app);
+userRoutes(app);
+commentRoutes(app);
+
+
+io.on('connection', function (socket) {
+    // console.log(socket.handshake.session);
+    socket.handshake.session.blah = 1
     issueSockets(socket, io)
     userSockets(socket, io)
 

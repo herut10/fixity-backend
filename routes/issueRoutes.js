@@ -4,6 +4,8 @@ const issueService = require('../services/issueService');
 
 module.exports = (app) => {
     app.get('/issue', (req, res) => {
+        req.session.blah = 1
+        console.log('req', req.session);
         var getBy = req.query.getBy
         issueService.query(getBy)
             .then(issues => res.json(issues))
