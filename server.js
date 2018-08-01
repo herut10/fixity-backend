@@ -15,11 +15,6 @@ const sharedsession = require("express-socket.io-session");
 const issueSockets = require('./sockets/issueSockets')
 const userSockets = require('./sockets/userSockets')
 
-
-
-
-
-
 app.use(bodyParser.json());
 app.use(cors({
     origin: ['http://localhost:8080'],
@@ -27,11 +22,6 @@ app.use(cors({
 }));
 app.use(express.static('dist'))
 app.use(cookieParser());
-
-
-
-
-
 
 const PORT = process.env.PORT || 3000;
 
@@ -58,17 +48,11 @@ commentRoutes(app);
 
 
 io.on('connection', function (socket) {
-    // console.log(socket.handshake.session);
-    socket.handshake.session.blah = 1
+    // socket.handshake.session.blah = 1
+    console.log('hello');
+    
     issueSockets(socket, io)
     userSockets(socket, io)
-
-
-    console.log('new connection');
-    socket.on('emit_method', function (val) {
-        console.log(val);
-
-    })
 });
 
 

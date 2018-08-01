@@ -19,6 +19,7 @@ module.exports = (app) => {
     });
     
     app.delete('/comment', (req, res) => {
+        
         var deleteBy = req.query.deleteBy;
         commentService.remove(deleteBy)
             .then(() => res.end('Deleted comments'))
