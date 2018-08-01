@@ -4,6 +4,7 @@ const issueService = require('../services/issueService');
 
 module.exports = (app) => {
     app.get('/issue', (req, res) => {
+        console.log('req', req.session);
         var getBy = req.query.getBy
         issueService.query(getBy)
             .then(issues => res.json(issues))
@@ -18,6 +19,9 @@ module.exports = (app) => {
     })
 
     app.delete('/issue/:issueId', (req, res) => {
+        if (!req.session.user || !req.session.user.isAdmin) {
+            res.status(401)
+        }
         var issueId = req.params.issueId;
         issueService.remove(issueId)
             .then(() => res.end('Deleted issue'))
