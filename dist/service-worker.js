@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.490686f808fb2c1bb9e56c367d74f3a4.js"
+  "/precache-manifest.8af1dc3cac53703f19d575724573f4e6.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "fixity"});
