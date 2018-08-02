@@ -41,9 +41,9 @@ function addUserRoutes(app) {
 
     app.put('/user/:userId', (req, res) => {
         const user = req.body;
-        if (!req.session.user || user._id !== req.session.user._id) {
-            res.status(401)
-        }
+        // if (!req.session.user || user._id !== req.session.user._id) {
+        //     res.status(401)
+        // }
         userService.update(user)
             .then(user => res.json(user))
             .catch(err => console.warn(err));
