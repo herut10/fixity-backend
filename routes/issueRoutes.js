@@ -19,7 +19,8 @@ module.exports = (app) => {
     })
 
     app.delete('/issue/:issueId', (req, res) => {
-        if (!req.session.user || !req.session.user.isAdmin) {
+        if (!req.session.user || !req.session.user.isAdmin
+        ) {
             res.status(401)
         }
         var issueId = req.params.issueId;
